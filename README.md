@@ -3,6 +3,8 @@
 This repository contains libraries that use in microservices of project.
 Each branch is separated library or wrap that can be use as external npm dependency.
 
+The master branch contains boirplate for new packages.
+
 For use some local library you need add next string to `package.json`:
 ```
 {
