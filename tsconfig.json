@@ -12,6 +12,8 @@
     "preserveConstEnums": true,
     "removeComments": true,
     "inlineSourceMap": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "typeRoots": [
       "./node_modules/@types"
     ]

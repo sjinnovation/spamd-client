@@ -1,33 +1,39 @@
 {
-  "name": "duke-mailservice-libs",
-  "version": "0.0.0",
-  "description": "duke-mailservice-libs",
+  "name": "spamd-client",
+  "version": "0.0.1",
+  "description": "NodeJS client for connecting to spamd/spamc server",
   "license": "MIT",
   "repository": "",
-  "author": {
-    "name": "",
-    "email": "",
-    "url": ""
-  },
-  "keywords": [""],
-  "files": ["lib"],
+  "keywords": [
+    "spamc",
+    "spamd",
+    "spamassasin"
+  ],
+  "files": [
+    "lib"
+  ],
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
     "clean": "rimraf lib && rimraf coverage",
-    "format":
-      "prettier --write \"{src,__tests__}/**/*.ts\" --single-quote --trailing-comma es5",
+    "format": "prettier --write \"{src,__tests__}/**/*.ts\" --single-quote --trailing-comma es5 --semi false",
     "lint": "tslint --force --format verbose \"src/**/*.ts\"",
     "prepare": "npm run build",
-    "prebuild":
-      "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
+    "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
     "build": "tsc --pretty",
     "test": "jest",
     "coverage": "jest --coverage",
     "watch": "npm run build -- --watch",
     "watch:test": "jest --watch"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/compose-function": "^0.0.30",
+    "@types/lodash.curry": "^4.1.4",
+    "compose-function": "^3.0.3",
+    "fluture": "^7.2.2",
+    "lodash.curry": "^4.1.1",
+    "rxjs": "^5.5.12"
+  },
   "devDependencies": {
     "@types/jest": "^22.0.1",
     "@types/node": "^8.0.0",
@@ -36,21 +42,24 @@
     "jest-environment-node-debug": "^2.0.0",
     "prettier": "^1.5.2",
     "rimraf": "^2.0.0",
-    "ts-jest": "^22.0.1",
+    "ts-jest": "^23.10.3",
     "ts-node": "^3.2.0",
     "tslint": "^5.0.0",
     "tslint-config-prettier": "^1.1.0",
-    "typescript": "^2.3.0"
+    "typescript": "^3.1.1"
   },
   "engines": {
     "node": ">=6.0.0"
   },
   "jest": {
     "transform": {
-      ".(ts)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      ".(ts)": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|js)$",
-    "moduleFileExtensions": ["ts", "js"],
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
     "testEnvironment": "node",
     "mapCoverage": true
   }
