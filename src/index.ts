@@ -32,7 +32,6 @@
 //   connection.instance.write(Builder.toRaw(reqWithOptions))
 // }
 
-
 // export const check = fn((email: string, connection: SpamdConnect) =>
 //   makeRequest(
 //     Builder.withBody(email, Builder.initRequest('REPORT')),

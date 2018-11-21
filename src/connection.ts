@@ -28,29 +28,35 @@ export class SpamdConnect {
   }
 
   private _initPool() {
-    this._connectionsPool = [...Array(this._poolSize).keys()]
-      .map(_ => createConnection(this._connectOpts))
+    this._connectionsPool = [...Array(this._poolSize).keys()].map(_ =>
+      createConnection(this._connectOpts)
+    )
   }
 
   private _handleClosing() {
-    this._connectionsPool
-      .map((conn, i) => {
-        conn.on('close', () => {
-          if(this._keepAliveEnabled) {
-            this._connectionsPool[i] = createConnection(this._connectOpts)
-          } else {
-            this._connectionsPool.splice(i, 1)
-          }
-        })
+    this._connectionsPool.map((conn, i) => {
+      conn.on('close', () => {
+        if (this._keepAliveEnabled) {
+          this._connectionsPool[i] = createConnection(this._connectOpts)
+        } else {
+          this._connectionsPool.splice(i, 1)
+        }
       })
+    })
   }
 
   public static of(options: SpamdClientConfig) {
     return new SpamdConnect(options)
   }
 
-  public use(fn: <T>(connect: Socket) => T) {
-    const connIndex = Math.floor(Math.random() * Math.floor(this._poolSize))
-    return fn(this._connectionsPool[connIndex])
+  public use(fn: <T>(connect: Socket) => Promise<T>) {
+    const connIndex = Math.floor(
+      Math.random() * Math.floor(this._poolSize)
+    )
+    const connection = this._connectionsPool.splice(connIndex, 1)[0]
+    return fn(connection).then(result => {
+      this._connectionsPool.push(connection)
+      return result
+    })
   }
 }

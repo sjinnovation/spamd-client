@@ -26,14 +26,7 @@
     "watch": "npm run build -- --watch",
     "watch:test": "jest --watch"
   },
-  "dependencies": {
-    "@types/compose-function": "^0.0.30",
-    "@types/lodash.curry": "^4.1.4",
-    "compose-function": "^3.0.3",
-    "fluture": "^7.2.2",
-    "lodash.curry": "^4.1.1",
-    "rxjs": "^5.5.12"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^22.0.1",
     "@types/node": "^8.0.0",
@@ -44,7 +37,6 @@
     "rimraf": "^2.0.0",
     "ts-jest": "^23.10.3",
     "ts-node": "^3.2.0",
-    "tslint": "^5.0.0",
     "tslint-config-prettier": "^1.1.0",
     "typescript": "^3.1.1"
   },
