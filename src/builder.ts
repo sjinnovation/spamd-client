@@ -37,18 +37,9 @@ export namespace Builder {
     )
   }
 
-  export const of = (options: { compress: boolean; user?: string }) => {
-    const userHeader = options.user ? [Header.Name.User] : null
-    const compressHeader = options.compress ? [Header.Name.User] : null
-
-    return {
-      method: (<any>'') as Method,
-      headers: [userHeader, compressHeader].filter(
-        value => value !== null
-      ) as Header.RequestHeaderT[],
-      body: '',
-    }
-  }
+  // export const of = () => {
+  //   return
+  // }
 
   export const withMethod = (method: Method) => (
     req: RequestToBuildT

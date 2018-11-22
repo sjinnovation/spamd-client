@@ -1,5 +1,6 @@
 import { Socket } from 'net'
 import { Header } from '../header'
+import { UseConnectionOptionsT } from '../connection'
 
 export enum StatusCode {
   EX_OK = 0,
@@ -66,20 +67,21 @@ export type SpamCheckResponseT = ResponseT<
 export const makeRequest = <RES_T>(
   requestBuilder: (req: RequestToBuildT) => RequestToBuildT,
   responseParser: (response: string) => RES_T
-) => (req: RequestToBuildT) => (connection: Socket): Promise<RES_T> => {
+) => (connection: Socket, options: UseConnectionOptionsT): Promise<RES_T> => {
   return new Promise((resolve, reject) => {
     let response = ''
     connection.on('data', responseChunk => {
+      console.log(responseChunk.toString())
       response += responseChunk.toString()
     })
 
     connection.on('end', () => {
       // !!DANGER!!: connection is mutable and reusing for different requests be attentive and careful
       // remove listeners to avoid memory leak
-      connection
-        .removeAllListeners('data') // should have one 'data' listener simultaneously (for one request)
-        .removeAllListeners('end') // should have one 'end' listener simultaneously (for one request)
-        .removeListener('error', reject) // we can have multiple error listeners, so remove only own listener
+      // connection
+      //   .removeAllListeners('data') // should have one 'data' listener simultaneously (for one request)
+      //   .removeAllListeners('end') // should have one 'end' listener simultaneously (for one request)
+      //   .removeListener('error', reject) // we can have multiple error listeners, so remove only own listener
 
       try {
         return resolve(responseParser(response))
@@ -90,14 +92,26 @@ export const makeRequest = <RES_T>(
 
     connection.on('error', reject)
 
-    const builtRequest = requestBuilder(req)
+    const builtRequest = requestBuilder({
+      method: (<any>'') as Method,
+      headers: [] as Header.RequestHeaderT[],
+      body: '',
+    })
+    const compressHeader: Header.Compress | null = options.compressionEnabled ? [Header.Name.Compress, 'zlib'] : null
+    const finalHeaders = [...builtRequest.headers]
 
     connection.write(`${builtRequest.method} SPAMC/1.5\r\n`)
 
-    builtRequest.headers.forEach(([name, value]) =>
-      connection.write(`${name}: ${value}\r\n`)
-    )
+    finalHeaders.forEach(header => {
+      if (!header) {
+        return
+      }
 
-    connection.write('\n\r' + builtRequest.body)
+      const [name, value] = header
+
+      connection.write(`${name}: ${value}\r\n`)
+    })
+
+    connection.write('\r\n' + builtRequest.body)
   })
 }

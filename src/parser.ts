@@ -27,7 +27,7 @@ const splitListByElement = <T>(splitter: T, list: T[]) => {
 
 const tokenize = (source: string) => {
   const [status, ...headersAndBody] = source.split('\r\n')
-  const metadata = status.match(/([A-Z_]+)|([0-9\.]{1,3})/g)
+  const metadata = status.match(/([A-Z_]+)|([0-9\.\-]{1,3})/g)
 
   if (!metadata) {
     throw new Error('Cannot parse response metadata')
@@ -64,7 +64,7 @@ export const parse = (source: string): ParserResultT => {
   const fixedTypeHeaders = tokens.headers.map(([name, value]): Header.ResponseHeaderT => {
     switch (name) {
       case Header.Name.Spam: {
-        const parsedSpamHeader = /Spam\s*:\s+(True|False)\s*;\s*([0-9.]+)\s*\/\s*([0-9.]+)\s*/.exec(
+        const parsedSpamHeader = /(True|False)\s*;\s*([0-9.\-]+)\s*\/\s*([0-9.]+)\s*/.exec(
           value,
         )
 

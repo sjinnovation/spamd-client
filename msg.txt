@@ -1,0 +1,180 @@
+Delivered-To: roman.valihura@sjinnovation.com
+Received: by 2002:a67:2350:0:0:0:0:0 with SMTP id v77csp319255vsf;
+        Wed, 21 Nov 2018 22:33:04 -0800 (PST)
+X-Received: by 2002:a0c:aee1:: with SMTP id n33mr8978087qvd.169.1542868384522;
+        Wed, 21 Nov 2018 22:33:04 -0800 (PST)
+ARC-Seal: i=3; a=rsa-sha256; t=1542868384; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=iiZJZl1E25oSkcwnJdKKtaRne1W+jMes36xZIlpoFm/y72J8wDK/TdawBBNIdlM6f1
+         HKfLNM9ODNinJjPhUiXYKrDyl7IPMejYbMiGxpiSE3QltYF9IEQcHRND9eTZzjBSgMNv
+         Zv24xdFHnAjLyIdnxJDN5X642xf08k6tAepyDxrwiPCfqjewkeU5jNzmGBVmRXcYI7Dv
+         fs5xSPNE9wmU2WvQMM3592sSqbNxzSrBltLVRj8iV+HTy2qjq5GDigShn0weAZBhUH3R
+         nhnT8QhLh5wvgPu5Vbx5rRw9gURZuPPi/sXLYSHVhED9yajCLUtDDLilJCXYUbQzVbpb
+         QtkQ==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-help:list-id:mailing-list:precedence:to:message-id:subject
+         :date:mime-version:from:content-transfer-encoding:dkim-signature;
+        bh=uf4gs5QTmDy4I0F12gWd+t350RpHowQP5t5m1m8FZUo=;
+        b=dwOp4xsMNhTmGXRU8W/OBR3J6bh32UMgcp8OMwl6o3ERAjuW3VhB7Gx+rWhbmUftOO
+         FVu5KCzQxQjsaBWZG6LwJeeryiQxku1mTNjvNLLLD6ppaGThDBWDeC6wt1LXq/jTilPD
+         ZrDb1oABZmQ+IZuveT3sDoEw/Z31pXH0PYuu0f3KeQEN7t91D6U941MrTLRSNwpmBjsL
+         5BBdrgX5i7vjPLv6tn3aCbNjXF8iZQa6lodwFYxVoHO6a+wwGNgbW9MrC46fKArAx8Jh
+         HgPl4JtFb8vwPmF6UmB9L3XUEArK8dQ+SFfrEZfHs2i+QTmqgLaBmH84yguT5idXTvpy
+         npLA==
+ARC-Authentication-Results: i=3; mx.google.com;
+       dkim=pass header.i=@sjinnovation-com.20150623.gappssmtp.com header.s=20150623 header.b=ZYuYsiY2;
+       arc=pass (i=2 dkim=pass dkdomain=sjinnovation-com.20150623.gappssmtp.com);
+       spf=neutral (google.com: 209.85.220.69 is neither permitted nor denied by best guess record for domain of ukraine+bncbd5k7z6grehrbh433hpqkgqegv5kuoa@sjinnovation.com) smtp.mailfrom=ukraine+bncBD5K7Z6GREHRBH433HPQKGQEGV5KUOA@sjinnovation.com
+Return-Path: <ukraine+bncBD5K7Z6GREHRBH433HPQKGQEGV5KUOA@sjinnovation.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id s11sor52613809qtc.35.2018.11.21.22.33.03
+        for <roman.valihura@sjinnovation.com>
+        (Google Transport Security);
+        Wed, 21 Nov 2018 22:33:04 -0800 (PST)
+Received-SPF: neutral (google.com: 209.85.220.69 is neither permitted nor denied by best guess record for domain of ukraine+bncbd5k7z6grehrbh433hpqkgqegv5kuoa@sjinnovation.com) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@sjinnovation-com.20150623.gappssmtp.com header.s=20150623 header.b=ZYuYsiY2;
+       arc=pass (i=2 dkim=pass dkdomain=sjinnovation-com.20150623.gappssmtp.com);
+       spf=neutral (google.com: 209.85.220.69 is neither permitted nor denied by best guess record for domain of ukraine+bncbd5k7z6grehrbh433hpqkgqegv5kuoa@sjinnovation.com) smtp.mailfrom=ukraine+bncBD5K7Z6GREHRBH433HPQKGQEGV5KUOA@sjinnovation.com
+ARC-Seal: i=2; a=rsa-sha256; t=1542868383; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=wqSAhswGhemWmwWY0belEDMM3EHUvHsDpznk7vE/xNNCEF/T17epMyWHyz2Ze1HkW5
+         8O8hcY8KMmhgOyn1lz8HDTq/REx3Xo/n2CrBJIIq/UwzLsO5mf4c56cVlpjICIq2BXUq
+         C4W1g3fvRx9+SDwZ6Gi9Ym3g6GS5kS6vrFpzLHgFo/8DlL1iWfBgJlUmNC/Hd1IP/ND5
+         S9/ulmFt3fm+n/8qBxVa76SE/Ldyfn8/cOodqWHgG3Jo04uE78u5Ad+KOvsUKHHgnVDf
+         ueGa+bXsWHyToLaQNoFbJ6MbIfP6lfs7iN9OEBGvXztrIMAvMpvHoFeHAuSk4+GaeAVE
+         CSeg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-help:list-id:mailing-list:precedence:to:message-id:subject
+         :date:mime-version:from:content-transfer-encoding:dkim-signature;
+        bh=uf4gs5QTmDy4I0F12gWd+t350RpHowQP5t5m1m8FZUo=;
+        b=EsSxgnHM3rzZp5hSnHKopvEl7t+TA3BPLHGEM3DhUsKLebOS9LK5aJwihMB9eTEWVp
+         8gLQRa1CYrdwdlTGCx+ATPUcn4Yyo2+uzf4X1znbqeLyiZ8KkpKK8NImYkNTOEr5wJUK
+         xnmm/cYW/mE/m1GXOBVyH1oYLAwBSmtt23US0fX/ZirKvGkZr86/IMTSKwvE/70NuTUH
+         R96I7CKP52TqpQD5UoQY8DUDXHFBZBK5NWZqWoMaioVpXkk0mH7/PQpfouvEASQDYF7q
+         lXq3uNqBKa8ZCxjbZnMLwcZQcnBZF7FheNLX7YEXNomuu3Yqi+4ODYEHr6hpDmHrZbzF
+         B6WQ==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@sjinnovation-com.20150623.gappssmtp.com header.s=20150623 header.b=PxtMzWiR;
+       spf=neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of shahera@sjinnovation.com) smtp.mailfrom=shahera@sjinnovation.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sjinnovation-com.20150623.gappssmtp.com; s=20150623;
+        h=content-transfer-encoding:from:mime-version:date:subject:message-id
+         :to:x-original-sender:x-original-authentication-results:precedence
+         :mailing-list:list-id:list-help;
+        bh=uf4gs5QTmDy4I0F12gWd+t350RpHowQP5t5m1m8FZUo=;
+        b=ZYuYsiY2k8xDuSB7LGt/lQkvXlGLLxIkpWrCzgs9GJfxntHlIEzMBcfGOYzVvgB6Gr
+         3M5xdH4m1gjt+QO+b2KXGWuyHlR12IvLqPzwN96MytBL8+tMZ5IGEgKpXnWhCoJRLmdw
+         1aawAbqfdq8C5bvRfe65BvcaGX1ENNDRf+RiZ2L1MgGJKWe07aFCPyddes9umqlqzH0I
+         LLkSxx++p00xv4SNCkhUYYVpF8lVgM1I0vTjVJjOWQYjQXnjmHbG9dg2wFhBiZkAEWDp
+         Xp7AGSqQK25oe30jiuRAFpnsu9EqkSKxYEJ4HJxAcUX1rFVGPCto8t9pefhkxOXafm7d
+         JhoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version:date
+         :subject:message-id:to:x-original-sender
+         :x-original-authentication-results:precedence:mailing-list:list-id
+         :x-spam-checked-in-group:list-help;
+        bh=uf4gs5QTmDy4I0F12gWd+t350RpHowQP5t5m1m8FZUo=;
+        b=M00rRtq6LUpQWwv5os+pxzOYy7bXvAuKS/j9spVFTfj5GSMYWDIlqORNrJyKMkW4R0
+         H2UOkNQPamDVx26CIrFeUK6kTSIY2rLcWNdqaIIOgWIBvfjj1IdI2usVZbHvV+pniecH
+         XdwKJGbjLStGfQZFYk9J1971pVmEQRwMbNMk+E1JN3M9G7ZKS5Gx2VWuYsDeOwgu27B9
+         Jh/71JDHPXgTW/lWukjaiEb3yKj+q1JWIi9U+mikBJQaA9ywk+gHkCbqGu2lKLweDVQb
+         nwTowBrgJgWaJdVq2Hq/dDzsbqWt21ctCswSKlKn6LLHimKt0Pz47kUS2oprg/Hg+5Ja
+         LYTQ==
+X-Gm-Message-State: AGRZ1gJGLwHiNOIs+sYd00GK2FMCGmw9l7vVzjcZ1E1ybPmpkO/BKFx1 n6mawy/ubIsZXYabavCy1NwHxA==
+X-Google-Smtp-Source: AJdET5dEHXhihBmgP5xtYbsC3+q9gwLzppSJ07miLSaicEM2gwKDtti/fzXWd2nXhAXfLPuBjqHu+A==
+X-Received: by 2002:ac8:2644:: with SMTP id v4mr5976035qtv.23.1542868383750;
+        Wed, 21 Nov 2018 22:33:03 -0800 (PST)
+X-BeenThere: ukraine@sjinnovation.com
+Received: by 2002:a37:65c9:: with SMTP id z192ls3612114qkb.3.gmail; Wed, 21 Nov 2018 22:33:03 -0800 (PST)
+X-Received: by 2002:a37:5686:: with SMTP id k128mr8006292qkb.29.1542868383469;
+        Wed, 21 Nov 2018 22:33:03 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1542868383; cv=none;
+        d=google.com; s=arc-20160816;
+        b=s1M2BzKshGUwebExR4As8qF1PsQM4i76qr6W33V5ywUHH78T/lvigveLkPv+uJ3w7F
+         Q8nqlvUrN2rNdt4s+AFOg9TAA1akuHYS3iGTVPsYraehllQkl55UMAZO/qpteBONKiM3
+         dVUatToPojYq7h/SAFBTG6uIV91Eg1FMu6M288MgKv9+EGDh/xYRb3uoCCOTXrH/X9me
+         ZrF8RXHLPm6d0fcXs8ZVKnybJ+KmnR3VXBmBVqq85iZhB6jBVicD/6sf2g0cWbLQFhSg
+         4xGILsVL4UoZxPxgW6YL+zXB/nsEEWHR2FuKzcgy68qbQoX8033pUFhjpxpJTM0jqCYj
+         KjGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:message-id:subject:date:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=uf4gs5QTmDy4I0F12gWd+t350RpHowQP5t5m1m8FZUo=;
+        b=WnVg7lkWI+4cqBKjqzqoxQ1Vte1d9OMx/hBAKGwZ9glsO9PcJvnY7qt+UVIe82hsNb
+         yTBCn0Qo3t8T9VzDsll6sv66USQ3zKlcnaxALP/iLOjUs1n7WUFqioCYNA4i9TLdZVcS
+         uW9cEQ4Ly3fw9SKWnoe4iS2A2Mbh35NtN1cx4MVxOrDuZDdcnQUqc08A3KUq9lZ4KSDe
+         CqvAooDZoTXgJkSzcO1nWCRmsSdPS+L0rxR4Ukl/qZeb5bFikPC/g4E0a011uBMk9YBW
+         wOioitQjm6F1ZNV57Uzuddwa+t6c+utM4ZLz+CeKJ1jo4Gtpu6Zdegq6mk7HYdzxymoX
+         HLlg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@sjinnovation-com.20150623.gappssmtp.com header.s=20150623 header.b=PxtMzWiR;
+       spf=neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of shahera@sjinnovation.com) smtp.mailfrom=shahera@sjinnovation.com
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 41sor53012885qtw.64.2018.11.21.22.33.03
+        for <ukraine@sjinnovation.com>
+        (Google Transport Security);
+        Wed, 21 Nov 2018 22:33:03 -0800 (PST)
+Received-SPF: neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of shahera@sjinnovation.com) client-ip=209.85.220.41;
+X-Received: by 2002:aed:39a1:: with SMTP id m30mr8636024qte.354.1542868382585;
+        Wed, 21 Nov 2018 22:33:02 -0800 (PST)
+Received: from [192.168.86.63] (pool-100-2-117-144.nycmny.fios.verizon.net. [100.2.117.144])
+        by smtp.gmail.com with ESMTPSA id n3sm29459038qtc.81.2018.11.21.22.32.56
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 21 Nov 2018 22:33:01 -0800 (PST)
+Content-Type: multipart/mixed; boundary=Apple-Mail-D42449DB-1858-438F-B52C-F0407EEBFF88
+Content-Transfer-Encoding: 7bit
+From: Shahera Choudhury <shahera@sjinnovation.com>
+Mime-Version: 1.0 (1.0)
+Date: Thu, 22 Nov 2018 01:32:56 -0500
+Subject: Happy Thanksgiving!
+Message-Id: <DF614299-BB5F-4124-AEF2-BC3AE6FC36E6@sjinnovation.com>
+To: goa@sjinnovation.com, newyork@sjinnovation.com, dhaka@sjinnovation.com, ukraine@sjinnovation.com, sylhet@sjinnovation.com
+X-Mailer: iPhone Mail (16B92)
+X-Original-Sender: shahera@sjinnovation.com
+X-Original-Authentication-Results: mx.google.com;
+       dkim=pass header.i=@sjinnovation-com.20150623.gappssmtp.com header.s=20150623 header.b=PxtMzWiR;
+       spf=neutral (google.com: 209.85.220.41 is neither permitted nor denied by best guess record for domain of shahera@sjinnovation.com) smtp.mailfrom=shahera@sjinnovation.com
+Precedence: list
+Mailing-list: list ukraine@sjinnovation.com; contact ukraine+owners@sjinnovation.com
+List-ID: <ukraine.sjinnovation.com>
+X-Spam-Checked-In-Group: ukraine@sjinnovation.com
+X-Google-Group-Id: 735612182993
+List-Help: <https://support.google.com/a/sjinnovation.com/bin/topic.py?topic=25838>, <mailto:ukraine+help@sjinnovation.com>
+
+--Apple-Mail-D42449DB-1858-438F-B52C-F0407EEBFF88
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Dear Team,
+
+=E2=80=98Gratitude can transform common days into thanksgiving, turn routin=
+e jobs into joy, and change ordinary opportunities into blessings!=E2=80=99=
+ - William Arthur Ward
+
+SJI would not be here today if it wasn=E2=80=99t for each one of your contr=
+ibutions! Thank you for all you have done and for a great year! Happy Thank=
+sgiving!
+
+
+--Apple-Mail-D42449DB-1858-438F-B52C-F0407EEBFF88
+Content-Type: image/jpeg; name=Team.jpeg; x-apple-part-url=D60F2B88-06E2-45FD-863D-1C83B89284B8
+Content-Disposition: inline; filename=Team.jpeg
+Content-Transfer-Encoding: base64
+
+
+--Apple-Mail-D42449DB-1858-438F-B52C-F0407EEBFF88
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+
+
+Thank you,
+Shahera and Shahed
+
+
+
+
+
+--Apple-Mail-D42449DB-1858-438F-B52C-F0407EEBFF88--
