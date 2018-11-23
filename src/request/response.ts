@@ -1,29 +1,5 @@
-import { Header } from './header'
-import { StatusCode } from './request/base.request'
-
-type ParserResultT = {
-  protocol: string;
-  version: string;
-  statusCode: StatusCode;
-  message: string;
-  headers: Header.ResponseHeaderT[];
-  body?: string;
-}
-
-const splitListByElement = <T>(splitter: T, list: T[]) => {
-  return list.reduce(
-    (result, element) => {
-      if (element === splitter) {
-        return [...result, []]
-      }
-
-      const lastGroup = result[result.length - 1]
-      const expectLast = result.slice(0, result.length - 1)
-      return [...expectLast, [...lastGroup, element]]
-    },
-    [[]] as T[][],
-  )
-}
+import { splitListByElement } from '../helpers'
+import { Header, ParserResultT, StatusCode } from '../types'
 
 const tokenize = (source: string) => {
   const [status, ...headersAndBody] = source.split('\r\n')
@@ -61,9 +37,9 @@ const tokenize = (source: string) => {
 export const parse = (source: string): ParserResultT => {
   const tokens = tokenize(source)
 
-  const fixedTypeHeaders = tokens.headers.map(([name, value]): Header.ResponseHeaderT => {
+  const fixedTypeHeaders = tokens.headers.map(([name, value]) => {
     switch (name) {
-      case Header.Name.Spam: {
+      case Header.Spam: {
         const parsedSpamHeader = /(True|False)\s*;\s*([0-9.\-]+)\s*\/\s*([0-9.]+)\s*/.exec(
           value,
         )
@@ -84,12 +60,12 @@ export const parse = (source: string): ParserResultT => {
         ]
       }
 
-      case Header.Name.ContentLength: {
+      case Header.ContentLength: {
         return [name, Number(value)]
       }
 
-      case Header.Name.DidSet:
-      case Header.Name.DidRemove: {
+      case Header.DidSet:
+      case Header.DidRemove: {
         if (['local', 'remote', 'local,remote', 'remote,local'].indexOf(value) === -1) {
           throw new Error(`Wrong value "${value}" for header "${name}"`)
         }
