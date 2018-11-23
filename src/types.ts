@@ -10,6 +10,8 @@ export enum Header {
   User = 'User',
 }
 
+export type HeaderRecord = [Header, string | number]
+
 export enum StatusCode {
   EX_OK = 0,
   EX_USAGE = 64,
@@ -60,8 +62,6 @@ export const enum Method {
   SYMBOLS = 'SYMBOLS',
   TELL = 'TELL',
 }
-
-export type HeaderRecord = [Header, string | number]
 
 export type RequestT = {
   method: Method
