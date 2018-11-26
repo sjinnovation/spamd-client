@@ -15,6 +15,10 @@ export const splitListByElement = <T>(splitter: T, list: T[]) => {
   )
 }
 
+export function ap<T, R1>(
+  ...fns: [Arity<T, R1>]
+): (applicable: T) => [R1]
+
 export function ap<T, R1, R2>(
   ...fns: [Arity<T, R1>, Arity<T, R2>]
 ): (applicable: T) => [R1, R2]
