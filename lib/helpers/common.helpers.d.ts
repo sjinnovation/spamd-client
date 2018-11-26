@@ -1,0 +1,13 @@
+declare type Arity<A, B> = (a: A) => B;
+export declare const splitListByElement: <T>(splitter: T, list: T[]) => T[][];
+export declare function ap<T, R1, R2>(...fns: [Arity<T, R1>, Arity<T, R2>]): (applicable: T) => [R1, R2];
+export declare function ap<T, R1, R2, R3>(...fns: [Arity<T, R1>, Arity<T, R2>, Arity<T, R3>]): (applicable: T) => [R1, R2, R3];
+export declare function ap<T, R1, R2, R3, R4>(...fns: [Arity<T, R1>, Arity<T, R2>, Arity<T, R3>, Arity<T, R4>]): (applicable: T) => [R1, R2, R3, R4];
+export declare function ap<T, R1, R2, R3, R4, R5>(...fns: [Arity<T, R1>, Arity<T, R2>, Arity<T, R3>, Arity<T, R4>, Arity<T, R5>]): (applicable: T) => [R1, R2, R3, R4, R5];
+export declare function ap<T, R1, R2, R3, R4, R5, R6>(...fns: [Arity<T, R1>, Arity<T, R2>, Arity<T, R3>, Arity<T, R4>, Arity<T, R5>, Arity<T, R6>]): (applicable: T) => [R1, R2, R3, R4, R5, R6];
+export declare function pipe<A, B>(f: Arity<A, B>): Arity<A, B>;
+export declare function pipe<A, B, C>(g: Arity<A, B>, f: Arity<B, C>): Arity<A, C>;
+export declare function pipe<A, B, C, D>(h: Arity<A, B>, g: Arity<B, C>, f: Arity<C, D>): Arity<A, D>;
+export declare function pipe<A, B, C, D, E>(i: Arity<A, B>, h: Arity<B, C>, g: Arity<C, D>, f: Arity<D, E>): Arity<A, E>;
+export declare function pipe<A, B, C, D, E, F>(j: Arity<A, B>, i: Arity<B, C>, h: Arity<C, D>, g: Arity<D, E>, f: Arity<E, F>): Arity<A, F>;
+export {};

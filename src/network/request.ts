@@ -3,7 +3,7 @@ import { HeaderRecord, RequestT, Method } from '../types'
 
 export const exec = <RES_T>(
   requestBuilder: (req: RequestT) => RequestT,
-  responseParser: (response: string) => RES_T,
+  responseParser: (response: string) => RES_T
 ) => (connection: Socket): Promise<RES_T> => {
   return new Promise((resolve, reject) => {
     let response = ''

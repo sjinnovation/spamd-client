@@ -6,5 +6,7 @@ import {
   withContentLength,
 } from '../helpers/request.helpers'
 
-export const emailSpamCheckRequest = (method: Method, email: string) =>
-  pipe(withMethod(method), withBody(email), withContentLength)
+export const emailSpamCheckRequest = (
+  method: Method,
+  email: string
+) => pipe(withMethod(method), withBody(email), withContentLength)

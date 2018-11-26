@@ -12,5 +12,5 @@ import { spamHeaderAndBodyResponse } from '../parsers'
 export const process = (email: string) =>
   Request.exec(
     emailSpamCheckRequest(Method.REPORT_IFSPAM, email),
-    spamHeaderAndBodyResponse,
+    spamHeaderAndBodyResponse
   )

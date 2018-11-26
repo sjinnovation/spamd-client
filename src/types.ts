@@ -70,10 +70,10 @@ export type RequestT = {
 }
 
 export type ParserResultT = {
-  protocol: string;
-  version: string;
-  statusCode: StatusCode;
-  message: string;
-  headers: HeaderRecord[];
-  body?: string;
+  protocol: string
+  version: string
+  statusCode: StatusCode
+  message: string
+  headers: HeaderRecord[]
+  body?: string
 }

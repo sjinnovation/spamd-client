@@ -21,12 +21,7 @@ export const withHeader = (header: HeaderRecord) => (
   headers: [...req.headers, header],
 })
 
-export const withContentLength = (
-  req: RequestT
-): RequestT => ({
+export const withContentLength = (req: RequestT): RequestT => ({
   ...req,
-  headers: [
-    ...req.headers,
-    [Header.ContentLength, req.body.length],
-  ],
+  headers: [...req.headers, [Header.ContentLength, req.body.length]],
 })

@@ -12,5 +12,5 @@ import { spamHeaderResponse } from '../parsers'
 export const check = (email: string) =>
   Request.exec(
     emailSpamCheckRequest(Method.CHECK, email),
-    spamHeaderResponse,
+    spamHeaderResponse
   )

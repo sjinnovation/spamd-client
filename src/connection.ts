@@ -1,14 +1,12 @@
 import { createConnection, Socket } from 'net'
 
-export namespace Connection {
-  type SpamdClientConfig = {
-    host: string
-    port: number
-  }
+type SpamdClientConfig = {
+  host: string
+  port: number
+}
 
-  export const of = (options: SpamdClientConfig) => (): Promise<
-    Socket
-  > => {
+export const Connection = {
+  of: (options: SpamdClientConfig) => (): Promise<Socket> => {
     const conn = createConnection({
       host: options.host,
       port: options.port,
@@ -21,5 +19,5 @@ export namespace Connection {
       })
       conn.on('error', reject)
     })
-  }
+  },
 }
