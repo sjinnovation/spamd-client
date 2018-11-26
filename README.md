@@ -9,8 +9,8 @@ Allow check emails via Spamassassin from NodeJS.
 * [X] REPORT
 * [X] REPORT_IFSPAM
 * [X] SYMBOLS
-* [] TELL
-* [] PING
+* [ ] TELL
+* [ ] PING
 
 ## API Documentation
 Api built for convenient usage in point-free style. Using native Promises.
