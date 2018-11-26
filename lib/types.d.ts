@@ -61,7 +61,7 @@ export declare const enum Method {
 export declare type RequestT = {
     method: Method;
     headers: HeaderRecordT[];
-    body: string;
+    body?: string;
 };
 export declare type ParserResultT = {
     protocol: string;
