@@ -28,6 +28,9 @@ export const withContentLength = (req: RequestT): RequestT => {
 
   return {
     ...req,
-    headers: [...req.headers, [Header.ContentLength, req.body.length]],
+    headers: [
+      ...req.headers,
+      [Header.ContentLength, req.body.length],
+    ],
   }
 }
