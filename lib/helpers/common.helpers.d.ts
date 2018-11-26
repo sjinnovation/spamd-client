@@ -1,5 +1,6 @@
 declare type Arity<A, B> = (a: A) => B;
 export declare const splitListByElement: <T>(splitter: T, list: T[]) => T[][];
+export declare function ap<T, R1>(...fns: [Arity<T, R1>]): (applicable: T) => [R1];
 export declare function ap<T, R1, R2>(...fns: [Arity<T, R1>, Arity<T, R2>]): (applicable: T) => [R1, R2];
 export declare function ap<T, R1, R2, R3>(...fns: [Arity<T, R1>, Arity<T, R2>, Arity<T, R3>]): (applicable: T) => [R1, R2, R3];
 export declare function ap<T, R1, R2, R3, R4>(...fns: [Arity<T, R1>, Arity<T, R2>, Arity<T, R3>, Arity<T, R4>]): (applicable: T) => [R1, R2, R3, R4];
