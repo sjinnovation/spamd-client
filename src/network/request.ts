@@ -31,7 +31,6 @@ export const exec = <RES_T>(
     const builtRequest = requestBuilder({
       method: (<any>'') as Method,
       headers: [] as HeaderRecordT[],
-      body: '',
     })
 
     connection.write(`${builtRequest.method} SPAMC/1.5\r\n`)

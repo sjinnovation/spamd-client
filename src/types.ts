@@ -66,7 +66,7 @@ export const enum Method {
 export type RequestT = {
   method: Method
   headers: HeaderRecordT[]
-  body: string
+  body?: string
 }
 
 export type ParserResultT = {
