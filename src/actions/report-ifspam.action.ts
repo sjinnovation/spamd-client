@@ -4,13 +4,13 @@ import { emailSpamCheckRequest } from '../builders'
 import { spamHeaderAndBodyResponse } from '../parsers'
 
 /**
- * Instruct SpamAssassin to process the message and return the rules that were matched.
+ * Send a request to process a message and return a report only if spam detected.
  *
  * @param email - An email based on the RFC 5322 standard.
- * @returns Spam report and the body contains the SpamAssassin rules that were matched.
+ * @returns Spam report and the body containing a report of the message scanned.
  */
-export const process = (email: string) =>
+export const reportIfSpam = (email: string) =>
   Request.exec(
-    emailSpamCheckRequest(Method.SYMBOLS, email),
+    emailSpamCheckRequest(Method.REPORT_IFSPAM, email),
     spamHeaderAndBodyResponse
   )
