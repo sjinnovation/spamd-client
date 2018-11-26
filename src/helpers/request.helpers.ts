@@ -1,4 +1,4 @@
-import { Header, HeaderRecord, RequestT, Method } from '../types'
+import { Header, HeaderRecordT, RequestT, Method } from '../types'
 
 export const withMethod = (method: Method) => (
   req: RequestT
@@ -14,7 +14,7 @@ export const withBody = (body: string) => (
   body,
 })
 
-export const withHeader = (header: HeaderRecord) => (
+export const withHeader = (header: HeaderRecordT) => (
   req: RequestT
 ): RequestT => ({
   ...req,

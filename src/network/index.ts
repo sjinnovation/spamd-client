@@ -1,5 +1,5 @@
 import * as Request from './request'
 import * as Response from './response'
-import { Connection, SpamdClientOptions } from './connection'
+import { Connection, SpamdClientOptionsT } from './connection'
 
-export { Request, Response, Connection, SpamdClientOptions }
+export { Request, Response, Connection, SpamdClientOptionsT }

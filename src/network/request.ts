@@ -1,5 +1,5 @@
 import { Socket } from 'net'
-import { HeaderRecord, RequestT, Method } from '../types'
+import { HeaderRecordT, RequestT, Method } from '../types'
 
 export const exec = <RES_T>(
   requestBuilder: (req: RequestT) => RequestT,
@@ -30,7 +30,7 @@ export const exec = <RES_T>(
 
     const builtRequest = requestBuilder({
       method: (<any>'') as Method,
-      headers: [] as HeaderRecord[],
+      headers: [] as HeaderRecordT[],
       body: '',
     })
 

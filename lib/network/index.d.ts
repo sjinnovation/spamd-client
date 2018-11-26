@@ -1,3 +1,4 @@
 import * as Request from './request';
 import * as Response from './response';
-export { Request, Response };
+import { Connection, SpamdClientOptionsT } from './connection';
+export { Request, Response, Connection, SpamdClientOptionsT };

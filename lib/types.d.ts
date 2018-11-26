@@ -9,7 +9,7 @@ export declare enum Header {
     Spam = "Spam",
     User = "User"
 }
-export declare type HeaderRecord = [Header, string | number];
+export declare type HeaderRecordT = [Header, string | number];
 export declare enum StatusCode {
     EX_OK = 0,
     EX_USAGE = 64,
@@ -60,7 +60,7 @@ export declare const enum Method {
 }
 export declare type RequestT = {
     method: Method;
-    headers: HeaderRecord[];
+    headers: HeaderRecordT[];
     body: string;
 };
 export declare type ParserResultT = {
@@ -68,6 +68,6 @@ export declare type ParserResultT = {
     version: string;
     statusCode: StatusCode;
     message: string;
-    headers: HeaderRecord[];
+    headers: HeaderRecordT[];
     body?: string;
 };

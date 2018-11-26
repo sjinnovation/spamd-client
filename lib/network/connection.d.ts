@@ -1,10 +1,9 @@
 /// <reference types="node" />
 import { Socket } from 'net';
-declare type SpamdClientConfig = {
+export declare type SpamdClientOptionsT = {
     host: string;
     port: number;
 };
 export declare const Connection: {
-    of: (options: SpamdClientConfig) => () => Promise<Socket>;
+    of: (options: SpamdClientOptionsT) => () => Promise<Socket>;
 };
-export {};

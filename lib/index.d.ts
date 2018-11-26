@@ -1,3 +1,3 @@
 import * as Action from './actions';
-import { Connection } from './connection';
-export { Connection, Action };
+import { Connection, SpamdClientOptionsT } from './network';
+export { SpamdClientOptionsT, Connection, Action };

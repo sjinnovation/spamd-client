@@ -10,7 +10,7 @@ export enum Header {
   User = 'User',
 }
 
-export type HeaderRecord = [Header, string | number]
+export type HeaderRecordT = [Header, string | number]
 
 export enum StatusCode {
   EX_OK = 0,
@@ -65,7 +65,7 @@ export const enum Method {
 
 export type RequestT = {
   method: Method
-  headers: HeaderRecord[]
+  headers: HeaderRecordT[]
   body: string
 }
 
@@ -74,6 +74,6 @@ export type ParserResultT = {
   version: string
   statusCode: StatusCode
   message: string
-  headers: HeaderRecord[]
+  headers: HeaderRecordT[]
   body?: string
 }

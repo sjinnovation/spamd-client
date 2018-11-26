@@ -1,4 +1,4 @@
 import * as Action from './actions'
-import { Connection, SpamdClientOptions } from './network'
+import { Connection, SpamdClientOptionsT } from './network'
 
-export { SpamdClientOptions, Connection, Action }
+export { SpamdClientOptionsT, Connection, Action }

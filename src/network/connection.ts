@@ -1,12 +1,12 @@
 import { createConnection, Socket } from 'net'
 
-export type SpamdClientOptions = {
+export type SpamdClientOptionsT = {
   host: string
   port: number
 }
 
 export const Connection = {
-  of: (options: SpamdClientOptions) => (): Promise<Socket> => {
+  of: (options: SpamdClientOptionsT) => (): Promise<Socket> => {
     const conn = createConnection(options)
 
     return new Promise((resolve, reject) => {
