@@ -1,13 +1,16 @@
 import { Method } from '../types'
-import { Builder, Response, Request } from '../request'
-import { checkError, getSpamHeader, pipe } from '../helpers'
+import { Request } from '../network'
+import { emailSpamCheckRequest } from '../builders'
+import { spamHeaderResponse } from '../parsers'
 
+/**
+ * Instruct SpamAssassin to process the included message.
+ *
+ * @param email - An email based on the RFC 5322 standard.
+ * @returns Spam report
+ */
 export const check = (email: string) =>
   Request.exec(
-    pipe(
-      Builder.withMethod(Method.CHECK),
-      Builder.withBody(email),
-      Builder.withContentLength,
-    ),
-    pipe(Response.parse, checkError, getSpamHeader),
+    emailSpamCheckRequest(Method.CHECK, email),
+    spamHeaderResponse,
   )

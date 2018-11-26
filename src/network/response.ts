@@ -1,4 +1,4 @@
-import { splitListByElement } from '../helpers'
+import { splitListByElement } from '../helpers/common.helpers'
 import { Header, ParserResultT, StatusCode } from '../types'
 
 const tokenize = (source: string) => {

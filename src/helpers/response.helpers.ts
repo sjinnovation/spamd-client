@@ -24,3 +24,9 @@ export const getSpamHeader = (result: ParserResultT) => {
     threshold: number
   }
 }
+
+export const getBody = (result: ParserResultT) => result.body || ''
+
+
+
+
