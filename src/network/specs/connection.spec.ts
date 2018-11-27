@@ -1,26 +1,24 @@
 import * as Network from 'net'
 import { Connection } from '../connection'
 import { EventEmitter } from 'events'
-import { getMock } from 'test-helper'
 
 afterEach(() => jest.clearAllMocks())
 
-jest.mock('net', () => {
-  const createConnection = jest.fn()
-  const __MOCK__ = { createConnection }
-  return { createConnection, __MOCK__ }
-})
+jest.mock('net', () => ({
+  createConnection: jest.fn(),
+}))
 
 describe('#Connection.of', () => {
-  test('should resolve promise with socket when connection established', (done) => {
+  test('should resolve promise with socket when connection established', done => {
     // given
     const eventBus = new EventEmitter()
     const connectionOpts = { host: 'test.example.com', port: 8888 }
     const connect = Connection.of(connectionOpts)
 
     // init mocks
-    const createConnectionMock = getMock(Network, 'createConnection')
-      .mockReturnValue(eventBus)
+    const createConnectionMock = (Network.createConnection as any).mockReturnValue(
+      eventBus
+    )
 
     // when
     connect()
@@ -38,15 +36,16 @@ describe('#Connection.of', () => {
     eventBus.emit('connect')
   })
 
-  test('should reject promise with socket connection error', (done) => {
+  test('should reject promise with socket connection error', done => {
     // given
     const eventBus = new EventEmitter()
     const connectionOpts = { host: 'test.example.com', port: 8888 }
     const connect = Connection.of(connectionOpts)
 
     // init mocks
-    const createConnectionMock = getMock(Network, 'createConnection')
-      .mockReturnValue(eventBus)
+    const createConnectionMock = (Network.createConnection as any).mockReturnValue(
+      eventBus
+    )
 
     // when
     connect()

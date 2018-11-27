@@ -35,13 +35,7 @@ export const exec = <RES_T>(
 
     connection.write(`${builtRequest.method} SPAMC/1.5\r\n`)
 
-    builtRequest.headers.forEach(header => {
-      if (!header) {
-        return
-      }
-
-      const [name, value] = header
-
+    builtRequest.headers.forEach(([name, value]) => {
       connection.write(`${name}: ${value}\r\n`)
     })
 

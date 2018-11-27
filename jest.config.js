@@ -13,6 +13,7 @@ module.exports = {
     'js',
     'json'
   ],
+  verbose: true,
   globals: {
     'ts-jest': {
       tsConfig: './tsconfig.json',

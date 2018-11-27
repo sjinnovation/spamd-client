@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "no-empty": false,
+    "max-classes-per-file": false
+  }
+}
