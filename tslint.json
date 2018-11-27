@@ -15,6 +15,7 @@
     "interface-over-type-literal": false,
     "member-access": false,
     "no-angle-bracket-type-assertion": false,
-    "prefer-object-spread": false
+    "prefer-object-spread": false,
+    "no-implicit-dependencies": false
   }
 }
