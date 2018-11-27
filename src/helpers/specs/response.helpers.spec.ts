@@ -3,9 +3,9 @@ import {
   getSpamHeader,
   getBody,
 } from '../response.helpers'
+
 import {
   ParserResultT,
-  ErrorMessage,
   StatusCode,
   Header,
 } from '../../types'
@@ -101,5 +101,30 @@ describe('#getSpamHeader', () => {
 
     // then
     throw new Error('Should newer call')
+  })
+})
+
+describe('#getBody', () => {
+  test('should return body content if exist', () => {
+    // given
+    const response = (<any>{
+      body: 'hey I am your body',
+    }) as ParserResultT
+
+    // when
+    const result = getBody(response)
+
+    // then
+    expect(result).toEqual('hey I am your body')
+  })
+
+  test('should return empty string if missing', () => {
+    // given
+    const response = (<any>{}) as ParserResultT
+
+    const result = getBody(response)
+
+    // then
+    expect(result).toEqual('')
   })
 })

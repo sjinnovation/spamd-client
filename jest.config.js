@@ -7,7 +7,7 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '.spec.ts',
   ],
-  collectCoverageFrom : ['src/**/*.ts'],
+  collectCoverageFrom : ['src/(network|helpers)/*.ts'],
   moduleFileExtensions: [
     'ts',
     'js',

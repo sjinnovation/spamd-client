@@ -1,4 +1,4 @@
-import * as Request from '../request'
+import { Request } from '../'
 import { Method, Header } from '../../types'
 import { Socket } from 'net'
 import { EventEmitter } from 'events'

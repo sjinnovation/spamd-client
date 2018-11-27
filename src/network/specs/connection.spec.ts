@@ -1,5 +1,5 @@
 import * as Network from 'net'
-import { Connection } from '../connection'
+import { Connection } from '../'
 import { EventEmitter } from 'events'
 
 afterEach(() => jest.clearAllMocks())
