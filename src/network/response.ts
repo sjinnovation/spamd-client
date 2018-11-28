@@ -16,7 +16,7 @@ const takeUntilDelimiter = (
 const tokenize = (source: string) => {
   const [status, headersAndBody] = takeUntilDelimiter('\r\n', source)
 
-  const metadata = status.match(/([A-Z_]+)|([0-9\.\-]{1,3})/g)
+  const metadata = /(SPAMD)\/([0-9\.\-]+)\s+([0-9]{1,2})\s+([A-Z_]+).*/.exec(status)
 
   if (!metadata) {
     throw new Error('Cannot parse response metadata')
@@ -26,7 +26,7 @@ const tokenize = (source: string) => {
     throw new Error('Headers not found')
   }
 
-  const [protocol, version, statusCode, message] = [...metadata]
+  const [_, protocol, version, statusCode, message] = [...metadata]
 
   const [rawHeaders, body] = takeUntilDelimiter(
     '\r\n\r\n',
@@ -37,7 +37,7 @@ const tokenize = (source: string) => {
     const parsedHeader = /([A-z\-]+)\s*:\s*(.*)/.exec(header)
 
     if (!parsedHeader) {
-      throw new Error('Cannot parse response headers')
+      throw new Error(`Cannot parse response headers: ${header}`)
     }
 
     const [_, name, value] = [...parsedHeader]
@@ -51,7 +51,7 @@ const tokenize = (source: string) => {
     statusCode,
     message,
     headers,
-    body,
+    body: body && body.replace(/\r\n/g, '\n'),
   }
 }
 
