@@ -1,21 +1,39 @@
-import { splitListByElement } from '../helpers/common.helpers'
 import { Header, ParserResultT, StatusCode } from '../types'
 
+const takeUntilDelimiter = (
+  delimiter: string,
+  source: string,
+): [string, string | undefined] => {
+  const position = source.indexOf(delimiter) + 1
+  return position
+    ? [
+        source.substr(0, position),
+        source.substr(position + delimiter.length - 1),
+      ]
+    : [source, undefined]
+}
+
 const tokenize = (source: string) => {
-  const [status, ...headersAndBody] = source.split('\r\n')
+  const [status, headersAndBody] = takeUntilDelimiter('\r\n', source)
+
   const metadata = status.match(/([A-Z_]+)|([0-9\.\-]{1,3})/g)
 
   if (!metadata) {
     throw new Error('Cannot parse response metadata')
   }
 
+  if (!headersAndBody) {
+    throw new Error('Headers not found')
+  }
+
   const [protocol, version, statusCode, message] = [...metadata]
 
-  const [rawHeaders, bodyList] = splitListByElement(
-    '',
-    headersAndBody
+  const [rawHeaders, body] = takeUntilDelimiter(
+    '\r\n\r\n',
+    headersAndBody,
   )
-  const headers = rawHeaders.map(header => {
+
+  const headers = rawHeaders.split('\r\n').map(header => {
     const parsedHeader = /([A-z\-]+)\s*:\s*(.*)/.exec(header)
 
     if (!parsedHeader) {
@@ -33,7 +51,7 @@ const tokenize = (source: string) => {
     statusCode,
     message,
     headers,
-    body: bodyList[0],
+    body,
   }
 }
 
@@ -44,7 +62,7 @@ export const parse = (source: string): ParserResultT => {
     switch (name) {
       case Header.Spam: {
         const parsedSpamHeader = /(True|False)\s*;\s*([0-9.\-]+)\s*\/\s*([0-9.]+)\s*/.exec(
-          value
+          value,
         )
 
         if (!parsedSpamHeader) {
@@ -71,11 +89,11 @@ export const parse = (source: string): ParserResultT => {
       case Header.DidRemove: {
         if (
           ['local', 'remote', 'local,remote', 'remote,local'].indexOf(
-            value
+            value,
           ) === -1
         ) {
           throw new Error(
-            `Wrong value "${value}" for header "${name}"`
+            `Wrong value "${value}" for header "${name}"`,
           )
         }
         return <any>[name, value]
