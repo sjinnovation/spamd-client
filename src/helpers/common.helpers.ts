@@ -1,22 +1,5 @@
 type Arity<A, B> = (a: A) => B
 
-export const splitListByElement = <T>(splitter: T, list: T[]) => {
-  return list
-    .reduce(
-      (result, element) => {
-        if (element === splitter) {
-          return [...result, []]
-        }
-
-        const lastGroup = result[result.length - 1]
-        const expectLast = result.slice(0, result.length - 1)
-        return [...expectLast, [...lastGroup, element]]
-      },
-      [[]] as T[][]
-    )
-    .filter(group => group.length > 0)
-}
-
 export function ap<T, R1>(
   ...fns: [Arity<T, R1>]
 ): (applicable: T) => [R1]

@@ -99,7 +99,7 @@ describe('#Response.parse', () => {
     } catch (e) {
       // then
       expect(e.message).toEqual(
-        'Cannot parse response headers: invalid_header =(',
+        'Cannot parse response headers: invalid_header =('
       )
     }
   })
@@ -129,7 +129,7 @@ describe('#Response.parse', () => {
     } catch (e) {
       // then
       expect(e.message).toEqual(
-        'Cannot parse Spam header "oops_spam"',
+        'Cannot parse Spam header "oops_spam"'
       )
     }
   })
@@ -145,7 +145,7 @@ describe('#Response.parse', () => {
     } catch (e) {
       // then
       expect(e.message).toEqual(
-        'Wrong value "cloud" for header "DidSet"',
+        'Wrong value "cloud" for header "DidSet"'
       )
     }
   })
@@ -161,7 +161,7 @@ describe('#Response.parse', () => {
     } catch (e) {
       // then
       expect(e.message).toEqual(
-        'Wrong value "remove" for header "DidRemove"',
+        'Wrong value "remove" for header "DidRemove"'
       )
     }
   })

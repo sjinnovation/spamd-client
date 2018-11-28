@@ -2,7 +2,7 @@ import { Header, ParserResultT, StatusCode } from '../types'
 
 const takeUntilDelimiter = (
   delimiter: string,
-  source: string,
+  source: string
 ): [string, string | undefined] => {
   const position = source.indexOf(delimiter) + 1
   return position
@@ -16,7 +16,9 @@ const takeUntilDelimiter = (
 const tokenize = (source: string) => {
   const [status, headersAndBody] = takeUntilDelimiter('\r\n', source)
 
-  const metadata = /(SPAMD)\/([0-9\.\-]+)\s+([0-9]{1,2})\s+([A-Z_]+).*/.exec(status)
+  const metadata = /(SPAMD)\/([0-9\.\-]+)\s+([0-9]{1,2})\s+([A-Z_]+).*/.exec(
+    status
+  )
 
   if (!metadata) {
     throw new Error('Cannot parse response metadata')
@@ -30,7 +32,7 @@ const tokenize = (source: string) => {
 
   const [rawHeaders, body] = takeUntilDelimiter(
     '\r\n\r\n',
-    headersAndBody,
+    headersAndBody
   )
 
   const headers = rawHeaders.split('\r\n').map(header => {
@@ -62,7 +64,7 @@ export const parse = (source: string): ParserResultT => {
     switch (name) {
       case Header.Spam: {
         const parsedSpamHeader = /(True|False)\s*;\s*([0-9.\-]+)\s*\/\s*([0-9.]+)\s*/.exec(
-          value,
+          value
         )
 
         if (!parsedSpamHeader) {
@@ -89,11 +91,11 @@ export const parse = (source: string): ParserResultT => {
       case Header.DidRemove: {
         if (
           ['local', 'remote', 'local,remote', 'remote,local'].indexOf(
-            value,
+            value
           ) === -1
         ) {
           throw new Error(
-            `Wrong value "${value}" for header "${name}"`,
+            `Wrong value "${value}" for header "${name}"`
           )
         }
         return <any>[name, value]

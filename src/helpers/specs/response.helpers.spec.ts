@@ -4,11 +4,7 @@ import {
   getBody,
 } from '../response.helpers'
 
-import {
-  ParserResultT,
-  StatusCode,
-  Header,
-} from '../../types'
+import { ParserResultT, StatusCode, Header } from '../../types'
 
 describe('#checkError', () => {
   test('should pass response throw when status code EX_OK', () => {
