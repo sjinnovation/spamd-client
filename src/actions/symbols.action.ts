@@ -2,6 +2,7 @@ import { Method } from '../types'
 import { Request } from '../network'
 import { emailSpamCheckRequest } from '../builders'
 import { spamHeaderAndBodyResponse } from '../parsers'
+import { pipe } from '../helpers/common.helpers'
 
 /**
  * Instruct SpamAssassin to process the message and return the rules that were matched.
@@ -12,5 +13,8 @@ import { spamHeaderAndBodyResponse } from '../parsers'
 export const symbols = (email: string) =>
   Request.exec(
     emailSpamCheckRequest(Method.SYMBOLS, email),
-    spamHeaderAndBodyResponse
+    pipe(spamHeaderAndBodyResponse, symbolsResponse => ({
+      ...symbolsResponse,
+      body: symbolsResponse.body.split(','),
+    }))
   )

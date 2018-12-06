@@ -1,6 +1,6 @@
 {
   "name": "spamd-client",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "NodeJS client for connecting to spamd/spamc server",
   "license": "MIT",
   "repository": "",
