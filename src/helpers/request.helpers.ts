@@ -11,7 +11,7 @@ export const withBody = (body: string) => (
   req: RequestT
 ): RequestT => ({
   ...req,
-  body,
+  body: body + '\r\n',
 })
 
 export const withHeader = (header: HeaderRecordT) => (

@@ -128,7 +128,10 @@ describe('#withBody', () => {
     const result = withBody('hello')(request)
 
     // then
-    expect(result).toEqual({ method: Method.HEADERS, body: 'hello' })
+    expect(result).toEqual({
+      method: Method.HEADERS,
+      body: 'hello\r\n',
+    })
   })
 
   test('should replace existed body property', () => {
@@ -142,6 +145,9 @@ describe('#withBody', () => {
     const result = withBody('world')(request)
 
     // then
-    expect(result).toEqual({ method: Method.PROCESS, body: 'world' })
+    expect(result).toEqual({
+      method: Method.PROCESS,
+      body: 'world\r\n',
+    })
   })
 })
