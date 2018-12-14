@@ -58,7 +58,7 @@ const connect = Connection.of({ host: 'example.com', port: 2233 })
 connect()
   .then(Action.check('<your_email_body>'))
   .then(console.log) // EX: { isSpam: true, score: -0.8, threshold: 5 }
-  .then(console.error) // EX: Error: Cannot connect
+  .catch(console.error) // EX: Error: Cannot connect
 ```
 
 
