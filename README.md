@@ -1,5 +1,5 @@
 # SpamD Network Client
-This library is NodeJS driver for Spamassassin spamd protocol build over TCP.
+This library is NodeJS driver for Spamassassin spamd protocol built over TCP.
 Allow check emails via Spamassassin from NodeJS.
 
 ## Implemented protocol methods
