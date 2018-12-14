@@ -384,9 +384,11 @@ Send a request to process a message and return a report.
     score: -0.9,
     threshold: 5,
   },
-  body: `
-    GTUBE,NO_RECEIVED,NO_RELAYS
-  `
+  body: [
+    'GTUBE',
+    'NO_RECEIVED',
+    'NO_RELAYS'
+  ]
 }
 ```
 
